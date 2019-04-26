@@ -81,6 +81,8 @@ namespace NomadApp
 
                     int userId = UsersTableService.GetUserId(user.Login);
                     SubscriptionLogService.InsertToTable(months, userId);
+
+                    DeliveryTableService.InsertToTable(userId);
                 }
                 else if(choice == 2)
                 {

@@ -7,23 +7,20 @@ using System.Threading.Tasks;
 
 namespace NomadApp.DataAccess
 {
-    public class SubscriptionLogService
+    public class DeliveryTableService
     {
-        public static void InsertToTable(int months, int userId)
+        public static void InsertToTable(int userId)
         {
             try
             {
                 using(var context = new NomadContext())
                 {
-                    context.SubscriptionLogs.Add(new SubscriptionLog
+                    context.Deliveries.Add(new Delivery
                     {
                         UserId = userId,
-                        SubscriptionStart = DateTime.Now,
-                        SubscriptionEnd = DateTime.Now.AddMonths(months),
-                        PricePerMonth = 100,
-                        MagazinePrice = 75
+                        DeadLineDate = DateTime.Now.AddDays(10),
+                        Status = "Не доставлено"
                     });
-                    context.SaveChanges();
                 }
             }
             catch (Exception exception)
